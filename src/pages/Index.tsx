@@ -64,35 +64,21 @@ export default function Index() {
       <ContactsSection />
 
       {/* Footer */}
-      <footer className="py-10 border-t border-white/5 bg-chess-darker">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center text-xl"
-                style={{ background: 'linear-gradient(135deg, #FFD700, #FF8C00)' }}>
-                ♚
-              </div>
-              <div>
-                <div className="text-white font-bold text-sm">Александр Шахматов</div>
-                <div className="text-white/40 text-xs">Международный гроссмейстер</div>
-              </div>
-            </div>
-
-            <div className="flex gap-6 text-sm text-white/30">
-              {['Главная', 'Обо мне', 'Услуги', 'Контакты'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item === 'Главная' ? 'home' : item === 'Обо мне' ? 'about' : item === 'Услуги' ? 'services' : 'contacts')}
-                  className="hover:text-amber-400 transition-colors"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-
-            <div className="text-white/20 text-xs text-center">
-              © 2026 Александр Шахматов. Все права защищены.
-            </div>
+      <footer style={{ borderTop: '1px solid rgba(201,168,76,0.1)', padding: '1.8rem 0' }}>
+        <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 2rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+          <button onClick={() => scrollToSection('home')} style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: "'Cormorant Garamond', serif", fontSize: '1.1rem', color: G }}>
+            ♟ Александр Шахматов
+          </button>
+          <div style={{ fontSize: '0.72rem', color: 'rgba(232,213,163,0.22)' }}>© 2026 · Международный гроссмейстер ФИДЕ</div>
+          <div style={{ display: 'flex', gap: '2rem' }}>
+            {[['Обо мне', 'about'], ['Услуги', 'services'], ['Расписание', 'schedule'], ['Контакты', 'contacts']].map(([label, id]) => (
+              <button key={id} onClick={() => scrollToSection(id)}
+                style={{ fontSize: '0.65rem', fontFamily: "'Oswald', sans-serif", letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(232,213,163,0.28)', background: 'none', border: 'none', cursor: 'pointer', transition: 'color 0.2s' }}
+                onMouseEnter={(e) => { (e.target as HTMLElement).style.color = G; }}
+                onMouseLeave={(e) => { (e.target as HTMLElement).style.color = 'rgba(232,213,163,0.28)'; }}>
+                {label}
+              </button>
+            ))}
           </div>
         </div>
       </footer>

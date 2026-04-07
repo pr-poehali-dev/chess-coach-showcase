@@ -1,112 +1,67 @@
 import { useEffect, useRef } from 'react';
 import Icon from '@/components/ui/icon';
 
+const HERO_IMAGE = 'https://cdn.poehali.dev/projects/3479418a-d4a7-434d-8e42-d90b449db16b/files/05c18d9f-951c-4931-ab99-c034676e49b4.jpg';
+const G = '#C9A84C';
+const TEXT = '#E8D5A3';
+const TEXT_DIM = 'rgba(232,213,163,0.62)';
+
+const FACTS = [
+  { icon: 'Trophy', label: 'Чемпион России', value: '2015, 2018, 2020' },
+  { icon: 'TrendingUp', label: 'Рейтинг ELO', value: '2680' },
+  { icon: 'BookOpen', label: 'Автор 3 книг', value: 'по стратегии' },
+  { icon: 'Globe', label: 'Турниры', value: '30+ стран' },
+];
+
 export default function AboutSection() {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll('.reveal').forEach((el) => {
-              el.classList.add('visible');
-            });
-          }
-        });
-      },
-      { threshold: 0.15 }
+      (entries) => entries.forEach((e) => { if (e.isIntersecting) e.target.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible')); }),
+      { threshold: 0.12 }
     );
-    if (sectionRef.current) observer.observe(sectionRef.current);
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
-  const facts: { icon: string; label: string; year: string }[] = [
-    { icon: 'Trophy', label: 'Чемпион России', year: '2015, 2018' },
-    { icon: 'Star', label: 'Рейтинг FIDE', year: '2750+' },
-    { icon: 'BookOpen', label: 'Автор 3 книг', year: 'по стратегии' },
-    { icon: 'Globe', label: 'Турниры в 30+ странах', year: 'мировой опыт' },
-  ];
-
   return (
-    <section ref={sectionRef} id="about" className="py-24 relative overflow-hidden bg-chess-dark">
-      {/* Background decoration */}
-      <div className="absolute right-0 top-0 w-1/2 h-full opacity-5 pointer-events-none">
-        <div className="text-[400px] font-black text-white/10 leading-none select-none" style={{ fontFamily: 'serif' }}>
-          ♟
-        </div>
-      </div>
+    <section ref={ref} id="about" style={{ padding: '8rem 0' }}>
+      <div style={{ maxWidth: 1280, margin: '0 auto', padding: '0 2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '5rem', alignItems: 'center' }}>
 
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Section header */}
-        <div className="text-center mb-16 reveal">
-          <span className="text-amber-400 text-sm font-semibold tracking-widest uppercase">Познакомимся</span>
-          <h2 className="text-5xl font-black mt-2 text-white">
-            Обо <span className="text-gradient-gold">мне</span>
-          </h2>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Avatar placeholder */}
-          <div className="reveal reveal-delay-1 flex justify-center lg:justify-start">
-            <div className="relative">
-              {/* Rotating ring */}
-              <div 
-                className="absolute inset-0 rounded-full animate-spin-slow opacity-50"
-                style={{ 
-                  background: 'conic-gradient(from 0deg, #FFD700, #7C3AED, #06B6D4, #FFD700)',
-                  padding: '3px',
-                  borderRadius: '50%'
-                }}
-              />
-              <div className="relative w-72 h-72 rounded-full overflow-hidden border-4 border-chess-darker"
-                style={{ boxShadow: '0 0 60px rgba(255,215,0,0.3)' }}>
-                <div className="w-full h-full bg-gradient-to-br from-amber-900/30 to-purple-900/30 flex items-center justify-center">
-                  <span className="text-9xl">♚</span>
-                </div>
-              </div>
-              {/* Badge */}
-              <div className="absolute -bottom-4 -right-4 bg-amber-400 text-black font-black text-sm px-4 py-2 rounded-full shadow-lg">
-                GM • FIDE 2750+
-              </div>
+          {/* Photo */}
+          <div className="reveal" style={{ position: 'relative' }}>
+            <img src={HERO_IMAGE} alt="О тренере" style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', filter: 'grayscale(15%)' }} />
+            <div style={{ position: 'absolute', bottom: -20, right: -20, background: G, padding: '1.5rem 1.8rem', textAlign: 'center' }}>
+              <div style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '2rem', color: '#0A0A0A', lineHeight: 1 }}>♟</div>
+              <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: '0.55rem', letterSpacing: '0.15em', color: '#0A0A0A', marginTop: '0.3rem', textTransform: 'uppercase' }}>ГРОССМЕЙСТЕР</div>
             </div>
           </div>
 
           {/* Content */}
-          <div className="space-y-6">
-            <div className="reveal reveal-delay-2">
-              <h3 className="text-3xl font-bold text-white mb-4">
-                14 лет в мире большого шахматного спорта
-              </h3>
-              <p className="text-white/60 leading-relaxed text-lg">
-                Я начал играть в шахматы в 6 лет и уже в 19 получил звание международного гроссмейстера. 
-                За годы карьеры я участвовал в сотнях турниров по всему миру, дважды становился 
-                чемпионом России и входил в топ-20 мирового рейтинга.
-              </p>
+          <div className="reveal reveal-delay-2">
+            <div style={{ fontFamily: "'Oswald', sans-serif", fontSize: '0.65rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: G, marginBottom: '1rem' }}>— Обо мне</div>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 300, lineHeight: 1.1, marginBottom: '2rem', color: TEXT }}>
+              Более 20 лет<br /><span style={{ color: G, fontStyle: 'italic' }}>в шахматах</span>
+            </h2>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem', color: TEXT_DIM, fontSize: '0.95rem', lineHeight: 1.8 }}>
+              <p>Я начал играть в 7 лет, и с тех пор шахматы стали смыслом моей жизни. Международный гроссмейстер ФИДЕ, чемпион России, победитель более 50 международных турниров.</p>
+              <p>Тренерской работой занимаюсь с 2004 года. За это время подготовил 3 гроссмейстеров, 15 мастеров спорта и более 500 разрядников. Индивидуальная программа — для каждого ученика.</p>
+              <p>Работаю с детьми от 5 лет и взрослыми любого уровня. Офлайн в Москве и онлайн по всему миру.</p>
             </div>
 
-            <div className="reveal reveal-delay-3">
-              <p className="text-white/60 leading-relaxed text-lg">
-                Сейчас моя главная страсть — передавать знания ученикам всех уровней: 
-                от начинающих детей до опытных игроков, стремящихся к профессиональному уровню. 
-                Мой метод основан на глубоком понимании позиции и развитии интуиции.
-              </p>
-            </div>
-
-            {/* Facts grid */}
-            <div className="reveal reveal-delay-4 grid grid-cols-2 gap-4">
-              {facts.map((fact) => (
-                <div
-                  key={fact.label}
-                  className="p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/8 hover:border-amber-400/30 transition-all duration-300 group"
-                >
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-lg bg-amber-400/20 flex items-center justify-center group-hover:bg-amber-400/30 transition-colors">
-                      <Icon name={fact.icon} size={16} className="text-amber-400" />
-                    </div>
-                    <span className="text-amber-400 text-sm font-semibold">{fact.year}</span>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '2.5rem' }}>
+              {FACTS.map((f) => (
+                <div key={f.icon}
+                  style={{ border: '1px solid rgba(201,168,76,0.15)', padding: '1.2rem', transition: 'all 0.3s', cursor: 'default' }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(201,168,76,0.4)'; (e.currentTarget as HTMLElement).style.background = 'rgba(201,168,76,0.04)'; }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(201,168,76,0.15)'; (e.currentTarget as HTMLElement).style.background = 'transparent'; }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                    <Icon name={f.icon as Parameters<typeof Icon>[0]['name']} size={14} fallback="Star" />
+                    <span style={{ fontFamily: "'Oswald', sans-serif", fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: G }}>{f.value}</span>
                   </div>
-                  <div className="text-white font-medium">{fact.label}</div>
+                  <div style={{ fontSize: '0.85rem', color: TEXT_DIM }}>{f.label}</div>
                 </div>
               ))}
             </div>
