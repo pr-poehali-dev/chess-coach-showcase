@@ -8,6 +8,8 @@ import StudentsSection from '@/components/chess/StudentsSection';
 import ScheduleSection from '@/components/chess/ScheduleSection';
 import ContactsSection from '@/components/chess/ContactsSection';
 
+const G = '#C9A84C';
+
 const sections = ['home', 'about', 'achievements', 'services', 'students', 'schedule', 'contacts'];
 
 export default function Index() {
