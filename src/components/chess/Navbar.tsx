@@ -53,8 +53,8 @@ export default function Navbar({ activeSection, onNavigate }: NavbarProps) {
               ♚
             </div>
             <div>
-              <div className="text-white font-black text-lg leading-tight">Шахматов</div>
-              <div className="text-amber-400 text-xs font-medium leading-tight">Гроссмейстер</div>
+              <div className="text-white font-black text-lg leading-tight">Нарек Манукян</div>
+              <div className="text-amber-400 text-xs font-medium leading-tight">Шахматный тренер · КМС</div>
             </div>
           </button>
 

@@ -65,21 +65,21 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
           <div className="hero-animate opacity-0">
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium border border-amber-400/30 bg-amber-400/10 text-amber-400">
               <span className="w-2 h-2 bg-amber-400 rounded-full animate-pulse" />
-              Международный гроссмейстер
+              Кандидат в мастера спорта (КМС)
             </span>
           </div>
 
           <div className="hero-animate opacity-0">
             <h1 className="text-6xl lg:text-7xl font-black leading-tight">
-              <span className="text-white">Александр</span>
+              <span className="text-white">Манукян</span>
               <br />
-              <span className="text-gradient-gold">Шахматов</span>
+              <span className="text-gradient-gold">Нарек</span>
             </h1>
           </div>
 
           <div className="hero-animate opacity-0">
             <p className="text-xl text-white/60 leading-relaxed max-w-lg">
-              Тренирую чемпионов с 2010 года. Более 200 учеников вышли на профессиональный уровень под моим руководством.
+              Шахматный тренер с многолетним опытом. Обучаю детей и взрослых онлайн — от новичков до продвинутых игроков.
             </p>
           </div>
 
@@ -105,9 +105,9 @@ export default function HeroSection({ onNavigate }: HeroSectionProps) {
           {/* Stats */}
           <div className="hero-animate opacity-0 grid grid-cols-3 gap-6 pt-4">
             {[
-              { value: '200+', label: 'Учеников' },
-              { value: '14', label: 'Лет опыта' },
-              { value: '47', label: 'Наград' },
+              { value: '2×', label: 'Чемпион области' },
+              { value: 'КМС', label: 'по шахматам' },
+              { value: 'ЮФО', label: 'Чемпион до 19 лет' },
             ].map((stat) => (
               <div key={stat.label} className="text-center">
                 <div className="text-3xl font-black text-gradient-gold">{stat.value}</div>
